@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include "xparameters.h"
+#include "xil_types.h"
+#include "xstatus.h"
+#include "xil_testmem.h"
+#include "xil_printf.h"
+#include <stdio.h>
+#include "xparameters.h"
+#include "xil_cache.h"
+#include "xintc.h"
+#include "xil_io.h"
+
+int main()
+{
+    int i;
+
+    int x = 1;
+
+    const int MAX = pow(2,15);
+    const int MIN = pow(2,0);
+
+    short unsigned int dir = 0;
+
+	while(1){
+
+		if (dir == 0)
+        	x <<= 1;
+        else if (dir == 1)
+        	x >>= 1;
+
+        if (x >= MAX)
+        	dir = 1;
+        if (x <= MIN)
+            dir = 0;
+
+        Xil_Out16(0x44a00000,x);
+
+        for (i=0;i<1000000;i++){
+            //Delay
+        }
+
+
+
+     }
+
+    return 0;
+}
