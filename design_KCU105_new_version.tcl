@@ -151,7 +151,7 @@ xilinx.com:ip:xlslice:1.0\
 DigiLAB:ip:AXI4Stream_CoarseExtensionCore:3.6\
 DigiLAB:ip:AXI4Stream_IperDecoder:1.3\
 DigiLAB:ip:AXI4Stream_MagicCalibrator:2.5\
-DigiLAB:ip:AXI4Stream_OverflowCounter:2.0\
+DigiLAB:ip:AXI4Stream_OverflowCounter:2.1\
 DigiLAB:ip:AXI4Stream_Synchronizer:2.3\
 DigiLAB:ip:AXI4Stream_XUS_VirtualTDL:1.0\
 DigiLAB:ip:BeltBus_NodeInserter:2.4\
@@ -274,7 +274,7 @@ proc create_hier_cell_Sync { parentCell nameHier } {
  ] $AXI4Stream_MagicCali_0
 
   # Create instance: AXI4Stream_OverflowC_0, and set properties
-  set AXI4Stream_OverflowC_0 [ create_bd_cell -type ip -vlnv DigiLAB:ip:AXI4Stream_OverflowCounter:2.0 AXI4Stream_OverflowC_0 ]
+  set AXI4Stream_OverflowC_0 [ create_bd_cell -type ip -vlnv DigiLAB:ip:AXI4Stream_OverflowCounter:2.1 AXI4Stream_OverflowC_0 ]
   set_property -dict [ list \
    CONFIG.BIT_COARSE {8} \
    CONFIG.BIT_FID {2} \
@@ -469,7 +469,7 @@ proc create_hier_cell_Ch2 { parentCell nameHier } {
  ] $AXI4Stream_MagicCali_0
 
   # Create instance: AXI4Stream_OverflowC_0, and set properties
-  set AXI4Stream_OverflowC_0 [ create_bd_cell -type ip -vlnv DigiLAB:ip:AXI4Stream_OverflowCounter:2.0 AXI4Stream_OverflowC_0 ]
+  set AXI4Stream_OverflowC_0 [ create_bd_cell -type ip -vlnv DigiLAB:ip:AXI4Stream_OverflowCounter:2.1 AXI4Stream_OverflowC_0 ]
   set_property -dict [ list \
    CONFIG.BIT_COARSE {8} \
    CONFIG.BIT_FID {2} \
@@ -639,7 +639,7 @@ proc create_hier_cell_Ch1 { parentCell nameHier } {
  ] $AXI4Stream_MagicCali_0
 
   # Create instance: AXI4Stream_OverflowC_0, and set properties
-  set AXI4Stream_OverflowC_0 [ create_bd_cell -type ip -vlnv DigiLAB:ip:AXI4Stream_OverflowCounter:2.0 AXI4Stream_OverflowC_0 ]
+  set AXI4Stream_OverflowC_0 [ create_bd_cell -type ip -vlnv DigiLAB:ip:AXI4Stream_OverflowCounter:2.1 AXI4Stream_OverflowC_0 ]
   set_property -dict [ list \
    CONFIG.BIT_COARSE {8} \
    CONFIG.BIT_FID {2} \
@@ -1080,7 +1080,7 @@ proc create_hier_cell_Master { parentCell nameHier } {
   set blk_mem_gen_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.4 blk_mem_gen_0 ]
   set_property -dict [ list \
    CONFIG.Byte_Size {8} \
-   CONFIG.Coe_File {../../../../../../../../../master_v70.coe} \
+   CONFIG.Coe_File {/home/mconsonni/Desktop/master_v70.coe} \
    CONFIG.EN_SAFETY_CKT {true} \
    CONFIG.Enable_32bit_Address {true} \
    CONFIG.Load_Init_File {true} \
