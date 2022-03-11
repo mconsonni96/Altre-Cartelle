@@ -94,13 +94,13 @@ architecture Behavioral of DSP_TDC is
 	signal O	: std_logic_vector(NUM_DSP*BIT_DSP-1 downto 0);		
 	
 	
-    signal CARRYCASCIN : std_logic := '0';
+    signal CARRYIN : std_logic := '0';
 
 	----------------------------------------------------------------------------
 
 
 begin
-    CARRYCASCIN <=  AsyncInput;
+    CARRYIN <=  AsyncInput;
     O_Taps_TDL	<=	O(NUM_TAP_TDL - 1 downto 0);
 
     DSP48E1_inst : DSP48E1
@@ -123,7 +123,7 @@ begin
       ADREG => 0,                        -- Number of pipeline stages for pre-adder (0 or 1)
       ALUMODEREG => 0,                   -- Number of pipeline stages for ALUMODE (0 or 1)
       AREG => 0,                         -- Number of pipeline stages for A (0, 1 or 2)
-      BCASCREG => 1,                     -- Number of pipeline stages between B/BCIN and BCOUT (0, 1 or 2)
+      BCASCREG => 0,                     -- Number of pipeline stages between B/BCIN and BCOUT (0, 1 or 2)
       BREG => 0,                         -- Number of pipeline stages for B (0, 1 or 2)
       CARRYINREG => 1,                   -- Number of pipeline stages for CARRYIN (0 or 1)
       CARRYINSELREG => 0,                -- Number of pipeline stages for CARRYINSEL (0 or 1)
@@ -152,12 +152,12 @@ begin
       -- Cascade: 30-bit (each) input: Cascade Ports
       ACIN => (Others => '0'),                     -- 30-bit input: A cascade data input
       BCIN => (Others => '0'),                     -- 18-bit input: B cascade input
-      CARRYCASCIN => CARRYCASCIN,       -- 1-bit input: Cascade carry input
+      CARRYCASCIN => '0',       -- 1-bit input: Cascade carry input
       MULTSIGNIN => '0',         -- 1-bit input: Multiplier sign input
       PCIN => (Others => '0'),                     -- 48-bit input: P cascade input
       -- Control: 4-bit (each) input: Control Inputs/Status Bits
       ALUMODE => (Others => '0'),               -- 4-bit input: ALU control input
-      CARRYINSEL => "010",         -- 3-bit input: Carry select input
+      CARRYINSEL => "000",         -- 3-bit input: Carry select input
       CLK => clk,                       -- 1-bit input: Clock input
       INMODE => (Others => '0'),                 -- 5-bit input: INMODE control input
       OPMODE => "0110011", --Others => '0'),                 -- 7-bit input: Operation mode input
@@ -165,7 +165,7 @@ begin
       A => (Others => '0'),                           -- 30-bit input: A data input
       B => (Others => '0'),                           -- 18-bit input: B data input
       C => (Others => '1'),                           -- 48-bit input: C data input
-      CARRYIN => '0',               -- 1-bit input: Carry input signal
+      CARRYIN => CARRYIN,               -- 1-bit input: Carry input signal
       D => (Others => '0'),                           -- 25-bit input: D data input
       -- Reset/Clock Enable: 1-bit (each) input: Reset/Clock Enable Inputs
       CEA1 => '1',                     -- 1-bit input: Clock enable input for 1st stage AREG
@@ -225,7 +225,7 @@ begin
                     ADREG => 0,                        -- Number of pipeline stages for pre-adder (0 or 1)
                     ALUMODEREG => 0,                   -- Number of pipeline stages for ALUMODE (0 or 1)
                     AREG => 0,                         -- Number of pipeline stages for A (0, 1 or 2)
-                    BCASCREG => 1,                     -- Number of pipeline stages between B/BCIN and BCOUT (0, 1 or 2)
+                    BCASCREG => 0,                     -- Number of pipeline stages between B/BCIN and BCOUT (0, 1 or 2)
                     BREG => 0,                         -- Number of pipeline stages for B (0, 1 or 2)
                     CARRYINREG => 1,                   -- Number of pipeline stages for CARRYIN (0 or 1)
                     CARRYINSELREG => 0,                -- Number of pipeline stages for CARRYINSEL (0 or 1)
@@ -259,7 +259,7 @@ begin
                     PCIN => (Others => '0'),                     -- 48-bit input: P cascade input
                     -- Control: 4-bit (each) input: Control Inputs/Status Bits
                     ALUMODE => (Others => '0'),               -- 4-bit input: ALU control input
-                    CARRYINSEL => (Others => '0'),         -- 3-bit input: Carry select input
+                    CARRYINSEL => "010",         -- 3-bit input: Carry select input
                     CLK => clk,                       -- 1-bit input: Clock input
                     INMODE => (Others => '0'),                 -- 5-bit input: INMODE control input
                     OPMODE => ("0110011"), --Others => '0'),                 -- 7-bit input: Operation mode input
